@@ -28,7 +28,7 @@ export function ContactForm({ onSubmit, initialData, onCancel }: ContactFormProp
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.phone) {
-      toast.error("Please fill in all fields");
+      toast.error("Por favor, preencha todos os campos!");
       return;
     }
 
@@ -46,7 +46,7 @@ export function ContactForm({ onSubmit, initialData, onCancel }: ContactFormProp
     <form onSubmit={handleSubmit} className="contact-form space-y-4 p-4 rounded-lg bg-card">
       <div className="space-y-2">
         <Input
-          placeholder="Full Name"
+          placeholder="Nome completo"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           className="w-full"
@@ -63,7 +63,7 @@ export function ContactForm({ onSubmit, initialData, onCancel }: ContactFormProp
       </div>
       <div className="space-y-2">
         <Input
-          placeholder="Phone"
+          placeholder="Telefone"
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
           className="w-full"
@@ -72,11 +72,11 @@ export function ContactForm({ onSubmit, initialData, onCancel }: ContactFormProp
       <div className="flex justify-end space-x-2">
         {onCancel && (
           <Button variant="outline" onClick={onCancel}>
-            Cancel
+            Cancelar
           </Button>
         )}
         <Button type="submit">
-          {initialData ? "Update Contact" : "Add Contact"}
+          {initialData ? "Atualizar contato" : "Adicionar contato"}
         </Button>
       </div>
     </form>
