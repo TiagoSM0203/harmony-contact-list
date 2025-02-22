@@ -1,28 +1,27 @@
 
-import { useState } from "react";
 import { Contact, ContactForm } from "@/components/ContactForm";
 import { ContactCard } from "@/components/ContactCard";
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
+import { addContact, updateContact, deleteContact } from '@/store/contactsSlice';
 import { toast } from "sonner";
 
 const Index = () => {
-  const [contacts, setContacts] = useState<Contact[]>([]);
+  const dispatch = useDispatch();
+  const contacts = useSelector((state: RootState) => state.contacts.contacts);
 
   const handleAddContact = (newContact: Contact) => {
-    setContacts([...contacts, newContact]);
+    dispatch(addContact(newContact));
     toast.success("Contact added successfully");
   };
 
   const handleUpdateContact = (updatedContact: Contact) => {
-    setContacts(
-      contacts.map((contact) =>
-        contact.id === updatedContact.id ? updatedContact : contact
-      )
-    );
+    dispatch(updateContact(updatedContact));
     toast.success("Contact updated successfully");
   };
 
   const handleDeleteContact = (id: string) => {
-    setContacts(contacts.filter((contact) => contact.id !== id));
+    dispatch(deleteContact(id));
     toast.success("Contact deleted successfully");
   };
 
